@@ -5,3 +5,5 @@ Debug
 *.log
 *.tex
 *.toc
+*.ui
+usb.py
