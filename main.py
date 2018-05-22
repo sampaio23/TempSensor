@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'qt.ui'
-#
-# Created by: PyQt4 UI code generator 4.11.4
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt4 import QtCore, QtGui
 
 try:
@@ -53,10 +47,6 @@ class Ui_Form(object):
         self.label_3 = QtGui.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(260, 90, 91, 16))
         self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.kseparator = KSeparator(Form)
-        self.kseparator.setGeometry(QtCore.QRect(-10, 150, 431, 20))
-        self.kseparator.setLineWidth(2)
-        self.kseparator.setObjectName(_fromUtf8("kseparator"))
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setGeometry(QtCore.QRect(50, 180, 61, 16))
         font = QtGui.QFont()
@@ -74,28 +64,51 @@ class Ui_Form(object):
         font.setStrikeOut(False)
         self.label_5.setFont(font)
         self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.radioButton = QtGui.QRadioButton(Form)
-        self.radioButton.setGeometry(QtCore.QRect(30, 210, 141, 20))
-        self.radioButton.setObjectName(_fromUtf8("radioButton"))
-        self.radioButton_2 = QtGui.QRadioButton(Form)
-        self.radioButton_2.setGeometry(QtCore.QRect(30, 240, 131, 20))
-        self.radioButton_2.setObjectName(_fromUtf8("radioButton_2"))
+
         self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setGeometry(QtCore.QRect(265, 210, 85, 27))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        
         self.label_6 = QtGui.QLabel(Form)
         self.label_6.setGeometry(QtCore.QRect(270, 270, 50, 12))
         self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.comboBox = QtGui.QComboBox(Form)
-        self.comboBox.setGeometry(QtCore.QRect(310, 265, 71, 24))
-        self.comboBox.setEditable(True)
-        self.comboBox.setObjectName(_fromUtf8("comboBox"))
+
+        self.portChoose = QtGui.QComboBox(Form)
+        self.portChoose.setGeometry(QtCore.QRect(310, 265, 71, 24))
+        self.portChoose.setEditable(False)
+        self.portChoose.setObjectName(_fromUtf8("portChoose"))
+        self.portChoose.addItem("")
+        self.portChoose.addItem("ttyACM0")
+        self.portChoose.addItem("ttyACM1")
+        self.portChoose.addItem("ttyACM2")
+        self.portChoose.addItem("ttyACM3")
+        self.portChoose.addItem("ttyACM4")
+        self.portChoose.addItem("tty0")
+        self.portChoose.addItem("tty1")
+        self.portChoose.addItem("tty2")
+        self.portChoose.addItem("tty3")
+        self.portChoose.addItem("tty4")
+
+        self.line = QtGui.QFrame(Form)
+        self.line.setGeometry(QtCore.QRect(-70, 150, 581, 20))
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName(_fromUtf8("line"))
+
+        self.tempBox = QtGui.QCheckBox(Form)
+        self.tempBox.setGeometry(QtCore.QRect(40, 210, 121, 20))
+        self.tempBox.setObjectName(_fromUtf8("tempBox"))
+        
+        self.humBox = QtGui.QCheckBox(Form)
+        self.humBox.setGeometry(QtCore.QRect(40, 250, 111, 20))
+        self.humBox.setObjectName(_fromUtf8("humBox"))
 
         self.retranslateUi(Form)
-        QtCore.QObject.connect(self.radioButton, QtCore.SIGNAL(_fromUtf8("pressed()")), self.tempDisplay.setDecMode)
-        QtCore.QObject.connect(self.radioButton_2, QtCore.SIGNAL(_fromUtf8("released()")), self.humDisplay.update)
-        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.label_5.show)
-        QtCore.QObject.connect(self.comboBox, QtCore.SIGNAL(_fromUtf8("currentIndexChanged(int)")), self.kseparator.show)
+        QtCore.QObject.connect(self.portChoose, QtCore.SIGNAL(_fromUtf8("currentIndexChanged(int)")), self.definePort)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toggleDataCapture)
+        QtCore.QObject.connect(self.tempBox, QtCore.SIGNAL(_fromUtf8("pressed()")), self.toggleAir)
+        QtCore.QObject.connect(self.humBox, QtCore.SIGNAL(_fromUtf8("pressed()")), self.toggleHum)
+
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -105,12 +118,55 @@ class Ui_Form(object):
         self.label_3.setText(_translate("Form", "Humidity (%)", None))
         self.label_4.setText(_translate("Form", "Command", None))
         self.label_5.setText(_translate("Form", " Get Data ", None))
-        self.radioButton.setText(_translate("Form", "Air Conditioner ON", None))
-        self.radioButton_2.setText(_translate("Form", "Humidifier ON", None))
         self.pushButton.setText(_translate("Form", "Start", None))
         self.label_6.setText(_translate("Form", "Port", None))
+        self.tempBox.setText(_translate("Form", "Air Conditioner ON", None))
+        self.humBox.setText(_translate("Form", "Humidifier ON", None))
 
-from kseparator import KSeparator
+    # Changes value on displays
+
+    # it has to change every x seconds regardless of other commands....
+
+    # Function that chooses the port
+
+    def definePort(self):
+        print self.portChoose.currentIndex()
+
+    # Function that saves data from sensor
+
+    clicked = 0
+
+    def toggleDataCapture(self):
+        if self.clicked%2 == 0:
+            self.pushButton.setText(_translate("Form", "Stop", None))
+            # Start data capture
+
+            self.clicked+=1
+        else:
+            self.pushButton.setText(_translate("Form", "Start", None))
+            # Stop data capture
+
+            self.clicked=0
+
+    # Function that turns the air conditioner on/off
+
+    def toggleAir(self):
+        if self.tempBox.isChecked():
+            # Turn Off
+            print "hello"
+        else:
+            # Turn On
+            print "alo"
+
+    # Function that turns the humidifier on/off
+
+    def toggleHum(self):
+        if self.humBox.isChecked():
+            # Turn off
+            print "hello"
+        else:
+            # Turn on
+            print "bye"
 
 if __name__ == "__main__":
     import sys
