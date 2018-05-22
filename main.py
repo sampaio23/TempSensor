@@ -125,7 +125,7 @@ class Ui_Form(object):
 
     # Changes value on displays
 
-    # it has to change every x seconds regardless of other commands....
+    # it has to change every x seconds regardless of other commands.....
 
     # Function that chooses the port
 
