@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
+import threading
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -125,13 +126,19 @@ class Ui_Form(object):
 
     # Changes value on displays
 
-    # it has to change every x seconds regardless of other commands.....
+    def getData(self):
+    	print "Hello World"
+    	if self.clicked%2 == 1:
+    		threading.Timer(1.0, self.getData).start()
+    	else:
+    		threading.Timer(1.0, self.getData).cancel()
 
     # Function that chooses the port
 
     def definePort(self):
         print self.portChoose.currentIndex()
-
+        
+        
     # Function that saves data from sensor
 
     clicked = 0
@@ -140,8 +147,8 @@ class Ui_Form(object):
         if self.clicked%2 == 0:
             self.pushButton.setText(_translate("Form", "Stop", None))
             # Start data capture
-
             self.clicked+=1
+            self.getData()
         else:
             self.pushButton.setText(_translate("Form", "Start", None))
             # Stop data capture
