@@ -142,10 +142,13 @@ class Ui_Form(object):
             out += self.ser.read(1)
         
         if out != '':
-            print ">>"+out
+            print out.split() # check how arguments will come to python to select
+
+        #self.tempDisplay.setText(_translate("Form",out,None))
+        #self.humDisplay.setText(_translate("Form",out, None))
 
     	if self.clicked%2 == 1:
-    		threading.Timer(1.0, self.getData).start()
+    		threading.Timer(1.0, self.getData).start() # adjust time to match sensors
     	else:
     		threading.Timer(1.0, self.getData).cancel()
 
