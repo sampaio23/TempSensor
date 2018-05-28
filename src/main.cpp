@@ -55,7 +55,7 @@ USB_DEVICE_CLASS_CDC_VCP usb_device_class_cdc_vcp(1);
 USB_DEVICE_CLASS_AUDIO usb_device_class_audio(0);
 
 
-USB_STM32 usb(0x29BC, 0x0002, "IME", "Microcontroladores 2017", SerialNumberGetHexaString());
+USB_STM32 usb(0x29BC, 0x0002, "IME", "Microcontroladores 2018", SerialNumberGetHexaString());
 
 INTERRUPT_STM32 usb_otg_fs_interrupt(OTG_FS_IRQn, 0x0D, 0x0D, ENABLE);
 

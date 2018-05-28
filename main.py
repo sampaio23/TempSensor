@@ -2,6 +2,8 @@
 
 from PyQt4 import QtCore, QtGui
 import threading
+import serial
+import time
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -127,9 +129,21 @@ class Ui_Form(object):
         self.humBox.setText(_translate("Form", "Humidifier ON", None))
 
     # Changes value on displays
+    
+    input = 1
+    ser = 1
 
     def getData(self):
-    	print "Hello World"
+    	self.input = "mult 2 3"
+        self.ser.write(self.input + '\r\n')
+        out = ''
+        time.sleep(1)
+        while self.ser.inWaiting() > 0:
+            out += self.ser.read(1)
+        
+        if out != '':
+            print ">>"+out
+
     	if self.clicked%2 == 1:
     		threading.Timer(1.0, self.getData).start()
     	else:
@@ -138,7 +152,18 @@ class Ui_Form(object):
     # Function that chooses the port
 
     def definePort(self):
-        print self.portChoose.currentIndex()
+        ports = ["","ttyACM0","ttyACM1","ttyACM2","ttyACM3","ttyACM4","tty0","tty1","tty2","tty3","tty4"]
+        portChosen =  ports[self.portChoose.currentIndex()]
+        print portChosen
+        self.ser = serial.Serial(
+            port = '/dev/'+portChosen,
+            baudrate = 9600,
+            parity = serial.PARITY_ODD,
+            stopbits = serial.STOPBITS_TWO,
+            bytesize = serial.SEVENBITS
+        )
+
+        print self.ser.isOpen() # returns True if serial is open
         
         
     # Function that saves data from sensor

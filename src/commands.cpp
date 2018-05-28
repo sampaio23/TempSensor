@@ -13,7 +13,7 @@ uint16_t cmd_info(uint16_t argc, uint8_t *argv8[]){
 
 //Printar Temperatura e Umidade com o comando info** no Terminal
 	if(argc==1){
-		size+=sprintf(buffer+size, "Temperatura: %d°C Umidade: %d%% \r\n", temp ,umi);
+		size+=sprintf(buffer+size, "%d %d\r\n", temp ,umi);
 	} else {
 		size+=sprintf(buffer+size, "Syntax: info\r\n");
 	}
