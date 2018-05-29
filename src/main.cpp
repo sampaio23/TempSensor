@@ -127,7 +127,8 @@ void loop() {
 			Delay_us(200000);
 		}
 	}
-	else {
+    // Usarei os LEDs para indicar os relés
+	/* else {
 		//Muda os status dos LEDS dependendo do range de temperatura.
 		if ((temp > 5) && (temp<=20)) {
 			GPIO_SetBits(GPIOD, LED[2]);
@@ -138,7 +139,7 @@ void loop() {
 		if (temp > 30) {
 			GPIO_SetBits(GPIOD, LED[3]);
 		}
-	}
+	} */
 }
 
 

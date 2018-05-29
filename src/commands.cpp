@@ -20,6 +20,15 @@ uint16_t cmd_info(uint16_t argc, uint8_t *argv8[]){
 	return size;
 }
 
+uint16_t cmd_ligarAr(uint16_t argc, uint8_t *argv8[]){
+    if (argc==2){
+        char* buffer = (char*) argv8[1];
+        if (atoi(buffer) == 1) GPIO_SetBits(GPIOD, LED[1]);
+        else GPIO_ResetBits(GPIOD, LED[1]);
+    }
+    return 0x0000;
+}
+
 //Comando info**
-CommandLine cmdline({"info"},
-					{cmd_info});
+CommandLine cmdline({"info","ligarAr"},
+					{cmd_info,cmd_ligarAr});
