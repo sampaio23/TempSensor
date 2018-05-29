@@ -34,6 +34,6 @@ Para ativar a medição, deve-se escolher a porta na qual está ligada o microco
 
 ### Referências
 
-![Datasheet - DHT11](https://github.com/Microcontroladores2018/Sampaio/blob/master/DHT11.pdf)
+[Datasheet - DHT11](https://github.com/Microcontroladores2018/Sampaio/blob/master/DHT11.pdf)
 
-![Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
+[Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
