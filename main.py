@@ -177,12 +177,13 @@ class Ui_Form(object):
         if self.clicked%2 == 0:
             self.pushButton.setText(_translate("Form", "Stop", None))
             # Start data capture
+            print "Começando captura de dados"
             self.clicked+=1
             self.getData()
         else:
             self.pushButton.setText(_translate("Form", "Start", None))
             # Stop data capture
-
+            print "Finalizando captura de dados"
             self.clicked=0
 
     # Function that turns the air conditioner on/off
@@ -190,20 +191,41 @@ class Ui_Form(object):
     def toggleAir(self):
         if self.tempBox.isChecked():
             # Turn Off
-            print "hello"
+            print "Desligando Ar"
+            self.input = "ligarAr 0"
+            self.ser.write(self.input + '\r\n')
+            out = ''
+            while self.ser.inWaiting() > 0:
+                out += self.ser.read(1)
+
         else:
             # Turn On
-            print "alo"
+            print "Ligando Ar"
+            self.input = "ligarAr 1"
+            self.ser.write(self.input + '\r\n')
+            out = ''
+            while self.ser.inWaiting() > 0:
+                out += self.ser.read(1)
 
     # Function that turns the humidifier on/off
 
     def toggleHum(self):
         if self.humBox.isChecked():
             # Turn off
-            print "hello"
+            print "Desligando Umidificador"
+            self.input = "ligarUmid 0"
+            self.ser.write(self.input + '\r\n')
+            out = ''
+            while self.ser.inWaiting() > 0:
+                out += self.ser.read(1)
         else:
             # Turn on
-            print "bye"
+            print "Ligando Umidificador"
+            self.input = "ligarUmid 1"
+            self.ser.write(self.input + '\r\n')
+            out = ''
+            while self.ser.inWaiting() > 0:
+                out += self.ser.read(1)
 
 if __name__ == "__main__":
     import sys
