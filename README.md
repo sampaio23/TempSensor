@@ -26,7 +26,7 @@ Em construção
 
 ### Interface do Usuário
 
-![alo](https://github.com/Microcontroladores2018/Sampaio/master/gui.png)
+![alo](https://github.com/Microcontroladores2018/Sampaio/blob/master/gui.png)
 
 ### Referências
 
