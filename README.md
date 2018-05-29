@@ -26,8 +26,13 @@ Em construção
 
 ### Interface do Usuário
 
-![alo](https://github.com/Microcontroladores2018/Sampaio/blob/master/gui.png)
+A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
+
+![screenshot 1](https://github.com/Microcontroladores2018/Sampaio/blob/master/gui.png)
+
+Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
 
 ### Referências
 
-Em construção
+![Datasheet - DHT11](https://github.com/Microcontroladores2018/Sampaio/blob/master/DHT11.pdf)
+![Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
