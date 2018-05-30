@@ -14,7 +14,9 @@ Este projeto consiste da implementação inicial de um protótipo funcional, uti
 
 ### Diagrama de Blocos
 
-Em construção
+Será utilizado o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
+
+![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/blockdiagram.png)
 
 ### Pinagem
 

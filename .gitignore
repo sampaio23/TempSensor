@@ -6,4 +6,5 @@ Debug
 *.tex
 *.toc
 *.ui
+documentation.pdf
 usb.py
