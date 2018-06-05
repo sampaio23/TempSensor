@@ -16,7 +16,7 @@ Este projeto consiste da implementação inicial de um protótipo funcional, uti
 
 Será utilizado o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
 
-![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/blockdiagram.png)
+![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png)
 
 ### Pinagem e Periféricos
 
@@ -72,17 +72,17 @@ uint16_t cmd_ligarUmid(uint16_t argc, uint8_t *argv8[]){
 
 O fluxograma consiste em um *loop* que continuamente lê o sensor. Ele contém tratamento de erros, e mostra, piscando o LED4, qual o tipo de erro em tempo real. Se não houver erros, o LED4 não pisca.
 
-![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/flow.png)
+![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/flow.png)
 
 O envio de comandos por USB pode ser representado pelo fluxograma abaixo.
 
-![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/usb.png)
+![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/usb.png)
 
 ### Interface do Usuário
 
 A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
 
-![screenshot 1](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/gui.png)
+![screenshot 1](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png)
 
 Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
 
