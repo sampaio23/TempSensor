@@ -18,13 +18,65 @@ Será utilizado o microcontrolador STM32F407VGT6 para a implementação do proje
 
 ![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/blockdiagram.png)
 
-### Pinagem
+### Pinagem e Periféricos
 
-Em construção
+Foram utilizados para o projeto *GPIOs* e *USB*. Abaixo, pode-se ver a tabela de pinagem e os comandos USB.
+
+| **Pino Discovery** |     **Descrição**     |
+|:------------------:|:---------------------:|
+|        PA11        |         USB DP        |
+|        PA12        |         USB DM        |
+|         PB0        |  Data In from sensor  |
+|        PD12        |       Error LED       |
+|        PD13        | Relay Air Conditioner |
+|        PD14        |    Relay Humidifier   |
+
+```cpp
+// Command: info
+// Get sensor values
+uint16_t cmd_info(uint16_t argc, uint8_t *argv8[]){
+	const char **argv=(const char **)argv8;
+	uint16_t size=0;
+	char* buffer=(char*)argv[0];
+	
+	if(argc==1) size+=sprintf(buffer+size, "%d %d\r\n", temp ,umi);
+    else size+=sprintf(buffer+size, "Syntax: info\r\n");
+
+	return size;
+}
+
+// Command: ligarAr num
+// If num equals 1, turns air conditioner on; else, turns off 
+uint16_t cmd_ligarAr(uint16_t argc, uint8_t *argv8[]){
+    if (argc==2){
+        char* buffer = (char*) argv8[1];
+        if (atoi(buffer) == 1) GPIO_SetBits(GPIOD, LED[1]);
+        else GPIO_ResetBits(GPIOD, LED[1]);
+    }
+    return 0x0000;
+}
+
+// Command: ligarUmid num
+// If num equals 1, turns humidifier on; else, turns off
+uint16_t cmd_ligarUmid(uint16_t argc, uint8_t *argv8[]){
+    if (argc==2){
+        char* buffer = (char*) argv8[1];
+        if (atoi(buffer) == 1) GPIO_SetBits(GPIOD, LED[2]);
+        else GPIO_ResetBits(GPIOD, LED[2]);
+    }
+    return 0x0000;
+}
+```
 
 ### Fluxograma do Firmware
 
-Em construção
+O fluxograma consiste em um *loop* que continuamente lê o sensor. Ele contém tratamento de erros, e mostra, piscando o LED4, qual o tipo de erro em tempo real. Se não houver erros, o LED4 não pisca.
+
+![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/flow.png)
+
+O envio de comandos por USB pode ser representado pelo fluxograma abaixo.
+
+![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/usb.png)
 
 ### Interface do Usuário
 
