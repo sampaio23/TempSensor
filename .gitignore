@@ -1,5 +1,4 @@
 Debug
-/images
 *.aux
 *.idx
 *.log
@@ -9,3 +8,4 @@ Debug
 documentation.pdf
 usb.py
 DHT11.pdf
+*.odg
