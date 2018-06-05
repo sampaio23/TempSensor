@@ -24,19 +24,19 @@ void DHT21_init() {
 	pinModeRead(); //Modo leitura
 }
 
-//FUNÇÃO DE LEITURA
+//FUNï¿½ï¿½O DE LEITURA
 uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h) {
 
-	int16_t _t=0; // Variável temperatura
-	uint16_t _h =0; // Variável umidade
-	uint8_t data[5]; // Defino o dado a ser lido - Composto de 5 elementos de 8 bits cada - é o
-	// protocolo de transmissão do  DHT21 - Manda UMIDADE HIGH(8bits) - UMIDADE LOW(8bits)
+	int16_t _t=0; // Variï¿½vel temperatura
+	uint16_t _h =0; // Variï¿½vel umidade
+	uint8_t data[5]; // Defino o dado a ser lido - Composto de 5 elementos de 8 bits cada - ï¿½ o
+	// protocolo de transmissï¿½o do  DHT21 - Manda UMIDADE HIGH(8bits) - UMIDADE LOW(8bits)
 	//TEMPERATURA HIGH(8bits) - TEMPERATURA LOW(8bits) - PARIDADE(8bits)
 
-	//OBS - primeiro bit da temperatura indica o sinal! - Usarei uma conversão.
-	//Modo Simplificado de pegar os dados corretamente do meu vetor de informação (Aprendido no GITHUB)
+	//OBS - primeiro bit da temperatura indica o sinal! - Usarei uma conversï¿½o.
+	//Modo Simplificado de pegar os dados corretamente do meu vetor de informaï¿½ï¿½o (Aprendido no GITHUB)
 	uint8_t err = read(data);
-	if (err == DHT_OK) { // Se não tem erro - Posso coletar os dados!
+	if (err == DHT_OK) { // Se nï¿½o tem erro - Posso coletar os dados!
 		_h = data[0]; //
 		_h <<= 8;
 		_h |= data[1];
@@ -50,18 +50,18 @@ uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h) {
 			_t= convertCtoF(_t);
 		}
 	}
-	*t = _t; // Já tenho minha temperatura
-	*h = _h; // Já tenho minha umidade
+	*t = _t; // Jï¿½ tenho minha temperatura
+	*h = _h; // Jï¿½ tenho minha umidade
 	return err;
 }
 
 static int16_t convertCtoF(int16_t c) {
-	return c * 9 / 5 + 32; // Conversão(usado na temperatura)
+	return c * 9 / 5 + 32; // Conversï¿½o(usado na temperatura)
 }
 
 static uint8_t read(uint8_t *data) {
 	uint8_t laststate = Bit_SET; //Uso para verificar as "quebras" de bit
-	uint8_t i = 0, j = 0; // índices de vetores
+	uint8_t i = 0, j = 0; // ï¿½ndices de vetores
 
 	//CLEAR DO "BANCO DE DADOS"
 	data[0] = data[1] = data[2] = data[3] = data[4] = 0;
@@ -69,11 +69,11 @@ static uint8_t read(uint8_t *data) {
 	//Modo escrita - Vou acordar o Sensor
 	pinModeWrite();
 
-	// BUS em nível baixo ~ 1ms
+	// BUS em nï¿½vel baixo ~ 1ms
 	GPIO_ResetBits(DHT21_GPIO, DHT21_PIN);
-	Delay_us(1000);
+	Delay_us(18000);
 
-	//BUS em nível alto por ~ 30us - "Release The Bus" do Protocolo
+	//BUS em nï¿½vel alto por ~ 30us - "Release The Bus" do Protocolo
 	GPIO_SetBits(DHT21_GPIO, DHT21_PIN);
 	Delay_us(30);
 	pinModeRead();
@@ -83,14 +83,14 @@ static uint8_t read(uint8_t *data) {
 		laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
 		Delay_us(1);
 	}
-	//Verifica se o sensor está conectado
+	//Verifica se o sensor estï¿½ conectado
 	if (laststate == Bit_SET) {
 		return DHT_NAO_CONECTADO;
 	}
 
-	// Espera o sinal em nível baixo ~85us
-	Delay_us(75);
-	for (i = 0; i < 10 && laststate == Bit_RESET; i++) {
+	// Espera o sinal em nï¿½vel baixo ~85us
+	Delay_us(70);
+	for (i = 0; i < 20 && laststate == Bit_RESET; i++) {
 		laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
 		Delay_us(1);
 	}
@@ -99,9 +99,9 @@ static uint8_t read(uint8_t *data) {
 		return DHT_TIME_OUT;
 	}
 
-	// Espera o sinal em nível alto ~85us
-	Delay_us(75);
-	for (i = 0; i < 10 && laststate == Bit_SET; i++) {
+	// Espera o sinal em nï¿½vel alto ~85us
+	Delay_us(70);
+	for (i = 0; i < 20 && laststate == Bit_SET; i++) {
 		laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
 		Delay_us(1);
 	}
@@ -111,11 +111,11 @@ static uint8_t read(uint8_t *data) {
 		return DHT_TIME_OUT;
 	}
 
-	//Pronto, sei que meu sensor começará a transmitir os dados - Começa a leitura dos Dados
-	//Protocolo usado pelo usuário kvv do GitHub.
+	//Pronto, sei que meu sensor comeï¿½arï¿½ a transmitir os dados - Comeï¿½a a leitura dos Dados
+	//Protocolo usado pelo usuï¿½rio kvv do GitHub.
 
 	for (j = 0; j < 40; j++) {
-		//Espera sinal em nível baixo ~65us
+		//Espera sinal em nï¿½vel baixo ~65us
 		Delay_us(48);
 		for (i = 0; i < 17 && laststate == Bit_RESET; i++) {
 			laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
@@ -126,20 +126,20 @@ static uint8_t read(uint8_t *data) {
 			return DHT_TIME_OUT;
 		}
 
-		//Espera Sinal em nível alto ~30 us
+		//Espera Sinal em nï¿½vel alto ~30 us
 		Delay_us(22);
 		for (i = 0; i < 8 && laststate == Bit_SET; i++) {
 			laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
 			Delay_us(1);
 		}
-		//PROCURA PRÓXIMO BIT
+		//PROCURA PRï¿½XIMO BIT
 		data[j / 8] <<= 1;
 		if (laststate == Bit_RESET) {
 			continue;
 		}
 
 		// Espera o sinal baixo de ~50us
-		Delay_us(38);
+		Delay_us(35);
 		for (i = 0; i < 12 && laststate == Bit_SET; i++) {
 			laststate = GPIO_ReadInputDataBit(DHT21_GPIO, DHT21_PIN);
 			Delay_us(1);
@@ -160,17 +160,17 @@ static uint8_t read(uint8_t *data) {
 	}
 
 
-	//Se o vetor data não está completo ou a paridade não bate - erro de soma.
+	//Se o vetor data nï¿½o estï¿½ completo ou a paridade nï¿½o bate - erro de soma.
 	return DHT_PARIDADE;
 }
 
-//Configura o Pino para Modo de Saída - ARM PARA SENSOR
+//Configura o Pino para Modo de Saï¿½da - ARM PARA SENSOR
 static void pinModeWrite() {
 	  GPIO_InitTypeDef GPIO_InitStructure;
 	  GPIO_InitStructure.GPIO_Pin = DHT21_PIN; //Pino B0
-	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; // Modo saída (Vou mandar dados)
+	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; // Modo saï¿½da (Vou mandar dados)
 	  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD; //Open Drain - setar os dados
-	  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;// Já tem pull up externo
+	  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;// Jï¿½ tem pull up externo
 	  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	  GPIO_Init(DHT21_GPIO, &GPIO_InitStructure);
 
