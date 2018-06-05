@@ -1,4 +1,7 @@
 #include "utils/commandline.h"
+#include "stm32f4xx.h"
+#include "stm32f4_discovery.h"
+#include "main.h"
 
 extern CommandLine cmdline;
 
