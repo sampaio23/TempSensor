@@ -34,6 +34,10 @@ A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com u
 
 Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
 
+### Demonstração
+
+Em construção
+
 ### Referências
 
 [Datasheet - DHT11](https://github.com/Microcontroladores2018/Sampaio/blob/master/DHT11.pdf)
