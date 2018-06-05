@@ -16,7 +16,7 @@ Este projeto consiste da implementação inicial de um protótipo funcional, uti
 
 Será utilizado o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
 
-![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/blockdiagram.png)
+![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/blockdiagram.png)
 
 ### Pinagem e Periféricos
 
@@ -72,11 +72,11 @@ uint16_t cmd_ligarUmid(uint16_t argc, uint8_t *argv8[]){
 
 O fluxograma consiste em um *loop* que continuamente lê o sensor. Ele contém tratamento de erros, e mostra, piscando o LED4, qual o tipo de erro em tempo real. Se não houver erros, o LED4 não pisca.
 
-![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/flow.png)
+![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/flow.png)
 
 O envio de comandos por USB pode ser representado pelo fluxograma abaixo.
 
-![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/usb.png)
+![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/image/usb.png)
 
 ### Interface do Usuário
 
@@ -92,6 +92,6 @@ Em construção
 
 ### Referências
 
-[Datasheet - DHT11](https://github.com/Microcontroladores2018/Sampaio/blob/master/DHT11.pdf)
+[Datasheet - DHT11](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf)
 
 [Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
