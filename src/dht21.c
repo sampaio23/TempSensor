@@ -15,7 +15,9 @@ void SysTick_Handler() {
 // Delay de 1us
 void Delay_us(uint32_t mSecs) {
 	contador = mSecs+1;
-	while (contador != 0);
+	while (contador != 0){
+		__WFI();
+	}
 }
 
 //Inicializa o DHT21
