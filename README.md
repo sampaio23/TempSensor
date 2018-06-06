@@ -7,14 +7,14 @@ Implementação de um monitor de temperatura e umidade utilizando a placa STM32F
 Controle de temperatura e umidade é algo fundamental em diversas aplicações, de manutenção de estufas ou processos industriais e laboratoriais, conservação de bens de consumo e controle automotivo até aplicações em residências.
 É comum a utilização de ar condicionado ou vaporizadores para ambientes pequenos e de refrigerantes em grandes canos para indústrias, porém pode ser de interesse do gerente de querer um controle maior, juntamente com um sistema de monitoramento dos dados.
 
-Este projeto consiste da implementação inicial de um protótipo funcional, utilizando um microcontrolador para monitoramento e controle de temperatura e umidade. O usuário será capaz de executar uma série de funções:
+Este projeto consiste da implementação inicial de um protótipo funcional, utilizando um microcontrolador para monitoramento e controle de temperatura e umidade. O usuário é capaz de executar uma série de funções:
 * Monitoramento em tempo real de temperatura e umidade do local via comunicação serial.
 * Controle com funções *liga* e *desliga* de um ar condicionado e de um vaporizador.
 * Utilização de interface gráfica amigável em uma aplicação para Desktop em Python.
 
 ### Diagrama de Blocos
 
-Será utilizado o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
+Utilizou-se o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
 
 <p align="center">
   <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png">
@@ -76,13 +76,13 @@ O fluxograma consiste em um *loop* que continuamente lê o sensor. Ele contém t
 
 ![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/flow.png)
 
-O envio de comandos por USB pode ser representado pelo fluxograma abaixo.
+Quando o usuário executa um comando, ocorre a interrupção pelo USB, que executa a função que o usuário escolheu. O tratamento dos comandos por USB pode ser representado pelo fluxograma abaixo.
 
 ![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/usb.png)
 
 ### Interface do Usuário
 
-A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
+A interface gráfica foi feita em Python utilizando o módulo **Qt4**. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
 
 <p align="center">
   <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png">
@@ -110,4 +110,4 @@ Para fins de demonstração, escolheu-se como pinos dos relés os pinos conectad
 
 * Dúvidas
     * Prof. Renault - *Auxiliou dentro e fora de sala de aula para retirar todas as dúvidas.*
-    * Ten Queiroz - *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
+    * Queiroz (Turma 2018)- *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
