@@ -20,8 +20,6 @@ Será utilizado o microcontrolador STM32F407VGT6 para a implementação do proje
   <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png">
 </p>
 
-![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png)
-
 ### Pinagem e Periféricos
 
 Foram utilizados para o projeto *GPIOs* e *USB*. Abaixo, pode-se ver a tabela de pinagem e os comandos USB.
@@ -86,7 +84,9 @@ O envio de comandos por USB pode ser representado pelo fluxograma abaixo.
 
 A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
 
-![screenshot 1](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png)
+<p align="center">
+  <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png">
+</p>
 
 Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
 
