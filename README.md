@@ -98,10 +98,16 @@ python main.py
 
 ### Demonstração
 
-Em construção
+Para fins de demonstração, escolheu-se como pinos dos relés os pinos conectados nos LEDS 3 e 5. Dessa forma, um comando de ligar relé também acende esses LEDS.
+
+{{video(video.mp4)}}
 
 ### Referências
 
-[Datasheet - DHT11](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf)
+* Documentação
+    * [Datasheet - DHT11](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf)
+    * [Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
 
-[Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
+* Dúvidas
+    * Prof. Renault - *Auxiliou dentro e fora de sala de aula para retirar todas as dúvidas.*
+    * Ten Queiroz - *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
