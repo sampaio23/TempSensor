@@ -22,8 +22,9 @@ extern "C"{
 
 
 //temp : Temperatura   umi : Umidade , vari�veis globais para o USB conseguir ler.
-int16_t temp = 0;
-uint16_t umi = 0;
+
+//int16_t temp = 0;
+//uint16_t umi = 0;
 
 uint8_t t1 = 0;
 uint8_t h1 = 0;
@@ -101,16 +102,12 @@ void loop() {
 	Delay_us(2000000);
 
 	//Reseto o Status do LED A cada ciclo
-	GPIO_ResetBits(GPIOD, LEDS);
+	GPIO_ResetBits(GPIOD, LED[0]);
 
 
 
 	//Leitura - Erro  - TEMPERATURA - UMIDADE
-	uint8_t erro = DHT21_read(DHT_C, &temp, &umi, &h1, &t1), i = 0, j = 0;
-
-	//O sensor me fornece tempx10 e umix10
-	temp = temp / 10;
-	umi = umi / 10;
+	uint8_t erro = DHT21_read(DHT_C, &h1, &t1), i = 0, j = 0;
 
 	// Verifica se est� tudo certo , caso contr�rio , atualiza j com o �ndice referente ao erro.
 	if (erro != DHT_OK) {

@@ -5,8 +5,8 @@
 
 extern CommandLine cmdline;
 
-extern int16_t temp;
-extern uint16_t umi;
+//extern int16_t temp;
+//extern uint16_t umi;
 
 extern uint8_t t1;
 extern uint8_t h1;

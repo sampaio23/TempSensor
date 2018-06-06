@@ -25,7 +25,7 @@
 void DHT21_init();
 
 //Fun��o de Leitura
-uint8_t DHT21_read(uint8_t s, int16_t *t, uint16_t *h, uint8_t *h1, uint8_t *t1);
+uint8_t DHT21_read(uint8_t s, uint8_t *h1, uint8_t *t1);
 volatile uint32_t contador;
 
 //Declara��o de Fun��es do Temporizador

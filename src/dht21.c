@@ -25,18 +25,17 @@ void DHT21_init() {
 }
 
 //FUN��O DE LEITURA
-uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h, uint8_t *h1, uint8_t *t1) {
+uint8_t DHT21_read(uint8_t S, uint8_t *h1, uint8_t *t1) {
 
-	int16_t _t=0; // Vari�vel temperatura
-	uint16_t _h =0; // Vari�vel umidade
+//	int16_t _t=0; // Vari�vel temperatura
+//	uint16_t _h =0; // Vari�vel umidade
+
 	uint8_t data[5]; // Defino o dado a ser lido - Composto de 5 elementos de 8 bits cada - � o
 	// protocolo de transmiss�o do  DHT21 - Manda UMIDADE HIGH(8bits) - UMIDADE LOW(8bits)
 	//TEMPERATURA HIGH(8bits) - TEMPERATURA LOW(8bits) - PARIDADE(8bits)
 
-	//OBS - primeiro bit da temperatura indica o sinal! - Usarei uma convers�o.
-	//Modo Simplificado de pegar os dados corretamente do meu vetor de informa��o (Aprendido no GITHUB)
 	uint8_t err = read(data);
-	if (err == DHT_OK) { // Se n�o tem erro - Posso coletar os dados!
+/*	if (err == DHT_OK) { // Se n�o tem erro - Posso coletar os dados!
 		_h = data[0]; //
 		_h <<= 8;
 		_h |= data[1];
@@ -52,8 +51,12 @@ uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h, uint8_t *h1, uint8_t *t1)
 	}
 	*t = _t; // J� tenho minha temperatura
 	*h = _h; // J� tenho minha umidade
-	*h1 = data[0];
-	*t1 = data[2];
+*/
+	// no sensor DHT11, esses sao os valores que correspondem a temperatura e humidade
+	if (err == DHT_OK){
+		*h1 = data[0];
+		*t1 = data[2];
+	}
 	return err;
 }
 
