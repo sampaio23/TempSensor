@@ -134,7 +134,7 @@ class Ui_Form(object):
     ser = 1
 
     def getData(self):
-    	self.input = "mult 2 3"
+    	self.input = "info"
         self.ser.write(self.input + '\r\n')
         out = ''
         time.sleep(1)
@@ -144,10 +144,12 @@ class Ui_Form(object):
         if out != '':
             print out.split() # check how arguments will come to python to select
 
-        #self.tempDisplay.setText(_translate("Form",out,None))
-        #self.humDisplay.setText(_translate("Form",out, None))
+        saida = out.split()
+        if len(saida) > 4:
+            self.tempDisplay.setText(_translate("Form",saida[-4],None))
+            self.humDisplay.setText(_translate("Form",saida[-3], None))
 
-    	if self.clicked%2 == 1:
+        if self.clicked%2 == 1:
     		threading.Timer(1.0, self.getData).start() # adjust time to match sensors
     	else:
     		threading.Timer(1.0, self.getData).cancel()
