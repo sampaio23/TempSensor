@@ -8,6 +8,8 @@ extern CommandLine cmdline;
 extern int16_t temp;
 extern uint16_t umi;
 
+extern uint8_t t1;
+extern uint8_t h1;
 
 uint16_t cmd_info(uint16_t argc, uint8_t *argv8[]){
 	const char **argv=(const char **)argv8;
@@ -16,7 +18,7 @@ uint16_t cmd_info(uint16_t argc, uint8_t *argv8[]){
 
 //Printar Temperatura e Umidade com o comando info** no Terminal
 	if(argc==1){
-		size+=sprintf(buffer+size, "%d %d\r\n", temp ,umi);
+		size+=sprintf(buffer+size, "%d %d\r\n", t1 ,h1);
 	} else {
 		size+=sprintf(buffer+size, "Syntax: info\r\n");
 	}

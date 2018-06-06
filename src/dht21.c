@@ -25,7 +25,7 @@ void DHT21_init() {
 }
 
 //FUN��O DE LEITURA
-uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h) {
+uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h, uint8_t *h1, uint8_t *t1) {
 
 	int16_t _t=0; // Vari�vel temperatura
 	uint16_t _h =0; // Vari�vel umidade
@@ -52,6 +52,8 @@ uint8_t DHT21_read(uint8_t S, int16_t *t, uint16_t *h) {
 	}
 	*t = _t; // J� tenho minha temperatura
 	*h = _h; // J� tenho minha umidade
+	*h1 = data[0];
+	*t1 = data[2];
 	return err;
 }
 

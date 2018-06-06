@@ -21,10 +21,12 @@ extern "C"{
 }
 
 
-//temp : Temperatura   umi : Umidade , variáveis globais para o USB conseguir ler.
+//temp : Temperatura   umi : Umidade , variï¿½veis globais para o USB conseguir ler.
 int16_t temp = 0;
 uint16_t umi = 0;
 
+uint8_t t1 = 0;
+uint8_t h1 = 0;
 /* Private macro */
 /* Private variables */
 /* Private function prototypes */
@@ -64,7 +66,7 @@ CircularBuffer<uint8_t> buffer(0,1024);
 
 int main(void)
 {
-	//Configuração do Systick para tick de 1us
+	//Configuraï¿½ï¿½o do Systick para tick de 1us
 	SysTick_Config(168-1);
 
 	//Inicializa GPIO D(LED) e B(BUS)
@@ -88,8 +90,8 @@ void init() {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 
     GPIO_InitTypeDef gpio;
-    GPIO_StructInit(&gpio); // Já inicia algumas configurações , só mudo o que eu preciso.
-    gpio.GPIO_Mode = GPIO_Mode_OUT; // Modo Saída
+    GPIO_StructInit(&gpio); // Jï¿½ inicia algumas configuraï¿½ï¿½es , sï¿½ mudo o que eu preciso.
+    gpio.GPIO_Mode = GPIO_Mode_OUT; // Modo Saï¿½da
     gpio.GPIO_Pin = LEDS; // Pinos dos Leds de Alerta
     GPIO_Init(GPIOD, &gpio);
 }
@@ -104,13 +106,13 @@ void loop() {
 
 
 	//Leitura - Erro  - TEMPERATURA - UMIDADE
-	uint8_t erro = DHT21_read(DHT_C, &temp, &umi), i = 0, j = 0;
+	uint8_t erro = DHT21_read(DHT_C, &temp, &umi, &h1, &t1), i = 0, j = 0;
 
 	//O sensor me fornece tempx10 e umix10
 	temp = temp / 10;
 	umi = umi / 10;
 
-	// Verifica se está tudo certo , caso contrário , atualiza j com o índice referente ao erro.
+	// Verifica se estï¿½ tudo certo , caso contrï¿½rio , atualiza j com o ï¿½ndice referente ao erro.
 	if (erro != DHT_OK) {
 		if (erro == DHT_NAO_CONECTADO) {
 			j = 2;
@@ -119,7 +121,7 @@ void loop() {
 		} else if (erro == DHT_PARIDADE) {
 			j = 4;
 		}
-		//Pisca o led dependendo do índice de erro (j)
+		//Pisca o led dependendo do ï¿½ndice de erro (j)
 		for (i = 0; i < j; i++) {
 			GPIO_SetBits(GPIOD, LED[0]);
 			Delay_us(250000);
@@ -127,7 +129,7 @@ void loop() {
 			Delay_us(200000);
 		}
 	}
-    // Usarei os LEDs para indicar os relés
+    // Usarei os LEDs para indicar os relï¿½s
 	/* else {
 		//Muda os status dos LEDS dependendo do range de temperatura.
 		if ((temp > 5) && (temp<=20)) {
@@ -144,7 +146,7 @@ void loop() {
 
 
 
-//INTERRUPÇÃO DO USB
+//INTERRUPï¿½ï¿½O DO USB
 extern USB_OTG_CORE_HANDLE USB_OTG_dev;
 extern "C" void OTG_FS_IRQHandler(void){
 	USBD_OTG_ISR_Handler (&USB_OTG_dev);

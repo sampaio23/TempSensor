@@ -5,10 +5,10 @@
 
 #include "stm32f4xx.h"
 
-//"FeedBack" - Testar se a comunicação está ok! - Método encontrado em algum dos infinitos códigos disponíveis no GitHub
+//"FeedBack" - Testar se a comunicaï¿½ï¿½o estï¿½ ok! - Mï¿½todo encontrado em algum dos infinitos cï¿½digos disponï¿½veis no GitHub
 
 #define DHT_OK		0	// OK!
-#define DHT_NAO_CONECTADO	1	// Sensor não conectado!
+#define DHT_NAO_CONECTADO	1	// Sensor nï¿½o conectado!
 #define DHT_TIME_OUT	2	// "Time Out"
 #define DHT_PARIDADE	3	// Erro na soma - Paridade!
 
@@ -21,14 +21,14 @@
 #define DHT21_GPIO GPIOB
 #define DHT21_BUS RCC_AHB1Periph_GPIOB
 
-//Declaro a função que inicializa o DHT21
+//Declaro a funï¿½ï¿½o que inicializa o DHT21
 void DHT21_init();
 
-//Função de Leitura
-uint8_t DHT21_read(uint8_t s, int16_t *t, uint16_t *h);
+//Funï¿½ï¿½o de Leitura
+uint8_t DHT21_read(uint8_t s, int16_t *t, uint16_t *h, uint8_t *h1, uint8_t *t1);
 volatile uint32_t contador;
 
-//Declaração de Funções do Temporizador
+//Declaraï¿½ï¿½o de Funï¿½ï¿½es do Temporizador
 void SysTick_Handler();
 void Delay_us(uint32_t mSecs);
 
