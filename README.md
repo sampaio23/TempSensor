@@ -100,7 +100,7 @@ python main.py
 
 Para fins de demonstração, escolheu-se como pinos dos relés os pinos conectados nos LEDS 3 e 5. Dessa forma, um comando de ligar relé também acende esses LEDS.
 
-{{video(video.mp4)}}
+[![screenshot 5](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/thumb.png)](https://youtu.be/T4_lUNnVeBA)
 
 ### Referências
 
