@@ -110,4 +110,4 @@ Para fins de demonstração, escolheu-se como pinos dos relés os pinos conectad
 
 * Dúvidas
     * Prof. Renault - *Auxiliou dentro e fora de sala de aula para retirar todas as dúvidas.*
-    * Queiroz (Turma 2018)- *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
+    * Queiroz (Turma 2018) - *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
