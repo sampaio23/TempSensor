@@ -16,6 +16,10 @@ Este projeto consiste da implementação inicial de um protótipo funcional, uti
 
 Será utilizado o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
 
+<p align="center">
+  <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png">
+</p>
+
 ![screenshot 2](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png)
 
 ### Pinagem e Periféricos
@@ -85,6 +89,12 @@ A interface gráfica foi feita em Python utilizando o módulo *Qt4*. Conta com u
 ![screenshot 1](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png)
 
 Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
+
+Para abrir a interface, basta executar:
+
+```
+python main.py
+```
 
 ### Demonstração
 
