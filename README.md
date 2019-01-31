@@ -1,37 +1,37 @@
-# Monitor de Temperatura e Umidade
+# Temperature and Humidity Monitor
 
-Implementação de um monitor de temperatura e umidade utilizando a placa STM32F4 Discovery com comunicação serial e Python.
+Implementation of a temperature and humidity monitor using the STM32F4 Discovery board with serial and Python communication.
 
-### Conceito e Motivação
+### Concept and Motivation
 
-Controle de temperatura e umidade é algo fundamental em diversas aplicações, de manutenção de estufas ou processos industriais e laboratoriais, conservação de bens de consumo e controle automotivo até aplicações em residências.
-É comum a utilização de ar condicionado ou vaporizadores para ambientes pequenos e de refrigerantes em grandes canos para indústrias, porém pode ser de interesse do gerente de querer um controle maior, juntamente com um sistema de monitoramento dos dados.
+Control of temperature and humidity is fundamental in many applications, from greenhouse maintenance or industrial and laboratory processes, conservation of consumer goods and automotive control to residential applications.
+It is common to use air conditioning or vaporizers for small environments and refrigerants in large pipes for industries. However, the manager may want greater control along with a data monitoring system.
 
-Este projeto consiste da implementação inicial de um protótipo funcional, utilizando um microcontrolador para monitoramento e controle de temperatura e umidade. O usuário é capaz de executar uma série de funções:
-* Monitoramento em tempo real de temperatura e umidade do local via comunicação serial.
-* Controle com funções *liga* e *desliga* de um ar condicionado e de um vaporizador.
-* Utilização de interface gráfica amigável em uma aplicação para Desktop em Python.
+This project consists of the initial implementation of a functional prototype, using a microcontroller for monitoring and control of temperature and humidity. The user is able to perform a number of functions:
+* Real-time temperature and humidity monitoring via serial communication.
+* Control with functions **on** and **off** of an air conditioner and a vaporizer.
+* Use of graphical user interface in a desktop application in Python.
 
-### Diagrama de Blocos
+### Block diagram
 
-Utilizou-se o microcontrolador STM32F407VGT6 para a implementação do projeto, bem como um sensor de temperatura e umidade DHT11. Como ilustrado, para a comunicação da placa com o computador, será utilizada comunicação serial via USB. A comunicação com o sensor é feita por um só fio (single-wire bi-directional) e cada envio consiste de 40 bits que indicam temperatura, umidade, e 1 byte de paridade.
+The STM32F407VGT6 microcontroller was used for the project implementation, as well as a DHT11 temperature and humidity sensor. As illustrated, for communication of the card with the computer, serial communication via USB was be used. The communication with the sensor is made by a single wire (bi-directional single-wire) and each sending consists of 40 bits that indicate temperature, humidity, and 1 byte of parity.
 
 <p align="center">
   <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/blockdiagram.png">
 </p>
 
-### Pinagem e Periféricos
+### Pinout and Peripherals
 
-Foram utilizados para o projeto *GPIOs* e *USB*. Abaixo, pode-se ver a tabela de pinagem e os comandos USB.
+The project used *GPIOs* and *USB*. Below you can see the pinout table and USB commands.
 
-| **Pino Discovery** |     **Descrição**     |
-|:------------------:|:---------------------:|
-|        PA11        |         USB DP        |
-|        PA12        |         USB DM        |
-|         PB0        |  Data In from sensor  |
-|        PD12        |       Error LED       |
-|        PD13        | Relay Air Conditioner |
-|        PD14        |    Relay Humidifier   |
+| **Pinout** | **Description**       |
+| :--------: | :-------------------: |
+| PA11       | USB DP                |
+| PA12       | USB DM                |
+| PB0        | Data In from sensor   |
+| PD12       | Error LED             |
+| PD13       | Relay Air Conditioner |
+| PD14       | Relay Humidifier      |
 
 ```cpp
 // Command: info
@@ -70,44 +70,44 @@ uint16_t cmd_ligarUmid(uint16_t argc, uint8_t *argv8[]){
 }
 ```
 
-### Fluxograma do Firmware
+### Firmware Flowchart
 
-O fluxograma consiste em um *loop* que continuamente lê o sensor. Ele contém tratamento de erros, e mostra, piscando o LED4, qual o tipo de erro em tempo real. Se não houver erros, o LED4 não pisca.
+The flowchart consists of a *loop* that continuously reads the sensor. It contains error handling, and shows, by flashing the LED4, what type of error is happening in real time. If there are no errors, LED4 does not blink.
 
-![screenshot 3](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/flow.png)
+![screenshot 3](https://github.com/Microcontrollers2018/Sampaio/blob/master/images/flow.png)
 
-Quando o usuário executa um comando, ocorre a interrupção pelo USB, que executa a função que o usuário escolheu. O tratamento dos comandos por USB pode ser representado pelo fluxograma abaixo.
+When the user executes a command, USB interruption occurs, which performs the function that the user chose. The handling of the commands via USB can be represented by the flowchart below.
 
-![screenshot 4](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/usb.png)
+![screenshot 4](https://github.com/Microcontrollers2018/Sampaio/blob/master/images/usb.png)
 
-### Interface do Usuário
+### User Interface
 
-A interface gráfica foi feita em Python utilizando o módulo **Qt4**. Conta com um painel que mostra, em tempo real, a temperatura e a umidade medidas pelo sensor.
+The graphical interface was made in Python using the **Qt4** module. It has a panel that shows, in real time, the temperature and humidity measured by the sensor.
 
 <p align="center">
   <img src="https://github.com/Microcontroladores2018/Sampaio/blob/master/images/gui.png">
 </p>
 
-Para ativar a medição, deve-se escolher a porta na qual está ligada o microcontrolador por USB, e clicar no botão *Start*. O programa também permite que o usuário ligue um ar condicionado ou um vaporizador utilizando as caixas *Air Conditioner ON* e *Humidifier ON*.
+To activate the measurement, you must choose the port on which the microcontroller is connected via USB, and click on the **Start** button. The program also allows the user to connect an air conditioner and/or a vaporizer using the *Air Conditioner ON* and *Humidifier ON* boxes.
 
-Para abrir a interface, basta executar:
+To open the interface, simply execute:
 
 ```
 python main.py
 ```
 
-### Demonstração
+### Demo
 
-Para fins de demonstração, escolheu-se como pinos dos relés os pinos conectados nos LEDS 3 e 5. Dessa forma, um comando de ligar relé também acende esses LEDS.
+For demonstration purposes, the pins connected to LEDs 3 and 5 were selected as pins of the relays. In this way, a *relay on* command also illuminates these LEDs.
 
 [![screenshot 5](https://github.com/Microcontroladores2018/Sampaio/blob/master/images/thumb.png)](https://youtu.be/T4_lUNnVeBA)
 
-### Referências
+### References
 
-* Documentação
+* Documentation
     * [Datasheet - DHT11](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf)
     * [Reference Manual - STM32F4 Discovery](http://www.st.com/content/ccc/resource/technical/document/reference_manual/3d/6d/5a/66/b4/99/40/d4/DM00031020.pdf/files/DM00031020.pdf/jcr:content/translations/en.DM00031020.pdf)
 
-* Dúvidas
-    * Prof. Renault - *Auxiliou dentro e fora de sala de aula para retirar todas as dúvidas.*
-    * Queiroz (Turma 2018) - *Permitiu que eu usasse seu código como base para iniciar meu projeto.*
+* Class Doubts
+     * Prof. Renault - *Helped in and out of the classroom to solve all doubts.*
+     * Queiroz (Class of 2018) - *Allowed me to use his code as a basis to start my project.*
